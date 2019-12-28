@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AuthAPI.Database;
-using AuthAPI.Entities;
+using AuthAPI.Payloads;
 using AuthAPI.Models;
 using AuthAPI.Services;
 using Microsoft.AspNetCore.Http;

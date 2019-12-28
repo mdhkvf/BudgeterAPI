@@ -27,6 +27,7 @@ namespace AuthAPI.Database
             }
             catch (Exception ex)
             {
+                ex.ToString();
                 return false;
             }
         }

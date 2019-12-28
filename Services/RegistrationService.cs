@@ -1,5 +1,5 @@
 ﻿using AuthAPI.Database;
-using AuthAPI.Entities;
+using AuthAPI.Payloads;
 using AuthAPI.Models;
 using Microsoft.Extensions.Options;
 using System;
@@ -26,7 +26,7 @@ namespace AuthAPI.Services
             _database = new UserContext();
         }
 
-        public bool CheckMatch(string username, string password)
+        public DataTransfer.User CheckMatch(string username, string password)
         {
             foreach (DataTransfer.User userCheck in _database.GetUsers())
             {
@@ -35,16 +35,16 @@ namespace AuthAPI.Services
                     var (verified, needsUpgrade) = _passwordHasher.Check(userCheck.Password, password);
                     if (verified)
                     {
-                        return true;
+                        return userCheck;
                     }
                     else
                     {
-                        return false;
+                        return null;
                     }
                 }
             }
 
-            return false;
+            return null;
         }
 
         public void Register(RegistrationPost registrationData)

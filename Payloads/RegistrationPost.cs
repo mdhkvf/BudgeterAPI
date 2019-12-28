@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace AuthAPI.Entities
+namespace AuthAPI.Payloads
 {
     public class RegistrationPost
     {

@@ -47,7 +47,7 @@ namespace AuthAPI.Services
             return null;
         }
 
-        public void Register(RegistrationPost registrationData)
+        public DataTransfer.User Register(RegistrationPost registrationData)
         {
             string passwordHash = _passwordHasher.Hash(registrationData.Password);
 
@@ -65,11 +65,12 @@ namespace AuthAPI.Services
                 if (userCheck.EmailAddress == user.EmailAddress || userCheck.UserName == user.UserName)
                 {
                     //Already have user with email or username
-                    return;
+                    return null;
                 }
             }
 
             _database.AddUser(user);
+            return user;
         }
     }
 }

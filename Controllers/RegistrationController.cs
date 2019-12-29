@@ -17,17 +17,40 @@ namespace AuthAPI.Controllers
     public class RegistrationController : ControllerBase
     {
         private readonly IRegistrationService _registrationService;
+        private readonly IAuthenticationService _authService;
 
-        public RegistrationController(IRegistrationService registrationService)
+        public RegistrationController(IRegistrationService registrationService, IAuthenticationService authService)
         {
             _registrationService = registrationService;
+            _authService = authService;
         }
 
         [HttpPost]
         public IActionResult Post([FromBody] RegistrationPost registrationData) 
         {
-            _registrationService.Register(registrationData);
-            return Ok();
+            LoginPostResponse response = new LoginPostResponse();
+
+            DataTransfer.User registeredUser = _registrationService.Register(registrationData);
+
+            if (registeredUser != null)
+            {
+                response.Success = true;
+                response.Body = new LoginPostResponseBody()
+                {
+                    UserName = registeredUser.UserName,
+                    EmailAddress = registeredUser.EmailAddress,
+                    FirstName = registeredUser.FirstName,
+                    LastName = registeredUser.LastName,
+                    AuthToken = _authService.GetToken()
+                };
+            }
+            else
+            {
+                response.Success = false;
+                response.ErrorMessage = "Unable to create account.";
+            }
+
+            return Ok(response);
         }
     }
 }

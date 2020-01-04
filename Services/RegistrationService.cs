@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AuthAPI.DataTransfer;
 
 namespace AuthAPI.Services
 {
@@ -26,27 +27,6 @@ namespace AuthAPI.Services
             _database = new UserContext();
         }
 
-        public DataTransfer.User CheckMatch(string username, string password)
-        {
-            foreach (DataTransfer.User userCheck in _database.GetUsers())
-            {
-                if (username == userCheck.UserName || username == userCheck.EmailAddress)
-                {
-                    var (verified, needsUpgrade) = _passwordHasher.Check(userCheck.Password, password);
-                    if (verified)
-                    {
-                        return userCheck;
-                    }
-                    else
-                    {
-                        return null;
-                    }
-                }
-            }
-
-            return null;
-        }
-
         public DataTransfer.User Register(RegistrationPost registrationData)
         {
             string passwordHash = _passwordHasher.Hash(registrationData.Password);
@@ -57,7 +37,12 @@ namespace AuthAPI.Services
                 LastName = registrationData.LastName,
                 EmailAddress = registrationData.EmailAddress,
                 UserName = registrationData.UserName,
-                Password = passwordHash
+                Password = passwordHash,
+                LoginInfo = new UserLogin()
+                {
+                    FailedLoginAttempts = 0,
+                    LockedOut = false,
+                }
             };
 
             foreach(DataTransfer.User userCheck in _database.GetUsers())

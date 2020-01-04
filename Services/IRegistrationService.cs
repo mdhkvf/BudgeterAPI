@@ -9,6 +9,5 @@ namespace AuthAPI.Services
     public interface IRegistrationService
     {
         public DataTransfer.User Register(RegistrationPost registrationData);
-        public DataTransfer.User CheckMatch(string username, string password);
     }
 }

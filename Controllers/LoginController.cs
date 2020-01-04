@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using AuthAPI.Entities;
 using AuthAPI.Payloads;
 using AuthAPI.Services;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AuthAPI.Controllers
@@ -13,13 +9,11 @@ namespace AuthAPI.Controllers
     [ApiController]
     public class LoginController : ControllerBase
     {
-        private readonly IRegistrationService _registrationService;
-        private readonly IAuthenticationService _authService;
+        private readonly ILoginService _loginService;
 
-        public LoginController(IRegistrationService registrationService, IAuthenticationService authService)
+        public LoginController(IRegistrationService registrationService, IAuthenticationService authService, ILoginService loginService)
         {
-            _registrationService = registrationService;
-            _authService = authService;
+            _loginService = loginService;
         }
 
         [HttpPost]
@@ -27,25 +21,26 @@ namespace AuthAPI.Controllers
         {
             LoginPostResponse response = new LoginPostResponse();
 
-            DataTransfer.User matchedUser = _registrationService.CheckMatch(loginData.UserName, loginData.Password);
+            LoginAttempt loginAttempt = _loginService.Login(loginData.UserName, loginData.Password);
 
-            if (matchedUser != null)
+            if (loginAttempt.IsSuccessful)
             {
                 response.Success = true;
                 response.Body = new LoginPostResponseBody()
                 {
-                    UserName = matchedUser.UserName,
-                    EmailAddress = matchedUser.EmailAddress,
-                    FirstName = matchedUser.FirstName,
-                    LastName = matchedUser.LastName,
-                    AuthToken = _authService.GetToken()
+                    UserName = loginAttempt.UserName,
+                    EmailAddress = loginAttempt.EmailAddress,
+                    FirstName = loginAttempt.FirstName,
+                    LastName = loginAttempt.LastName,
+                    AuthToken = loginAttempt.AuthToken
                 };
             }
             else
             {
                 response.Success = false;
-                response.ErrorMessage = "Invalid username or password.";
+                response.ErrorMessage = loginAttempt.ErrorMessage;
             }
+
             return Ok(response);
         }
     }

@@ -34,7 +34,12 @@ namespace AuthAPI.Database
 
         public List<User> GetUsers()
         {
-            return Users.ToList();
+            return Users.Include(x => x.LoginInfo).ToList();
+        }
+
+        public void Commit()
+        {
+            this.SaveChanges();
         }
     }
 }

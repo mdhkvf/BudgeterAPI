@@ -68,7 +68,9 @@ namespace AuthAPI
                     ValidateAudience = true,
                     ValidAudience = "http://dotnetdetail.net",
                     ValidIssuer = "http://dotnetdetail.net",
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("SecureKeyTestingCharLength"))
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("SecureKeyTestingCharLength")),
+                    ValidateLifetime = true,
+                    ClockSkew = TimeSpan.Zero
                 };
             });
 

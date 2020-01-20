@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AuthAPI.Migrations
 {
     [DbContext(typeof(UserContext))]
-    [Migration("20200103204626_initialUserContext")]
-    partial class initialUserContext
+    [Migration("20200120050602_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -61,7 +61,7 @@ namespace AuthAPI.Migrations
                     b.Property<bool>("LockedOut")
                         .HasColumnType("bit");
 
-                    b.Property<DateTime>("UnlockDate")
+                    b.Property<DateTime?>("UnlockDate")
                         .HasColumnType("datetime2");
 
                     b.Property<int>("UserId")

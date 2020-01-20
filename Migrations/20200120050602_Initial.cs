@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace AuthAPI.Migrations
 {
-    public partial class initialUserContext : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -33,7 +33,7 @@ namespace AuthAPI.Migrations
                     UserId = table.Column<int>(nullable: false),
                     FailedLoginAttempts = table.Column<int>(nullable: false),
                     LockedOut = table.Column<bool>(nullable: false),
-                    UnlockDate = table.Column<DateTime>(nullable: false)
+                    UnlockDate = table.Column<DateTime>(nullable: true)
                 },
                 constraints: table =>
                 {

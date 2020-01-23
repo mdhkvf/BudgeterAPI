@@ -24,5 +24,12 @@ namespace AuthAPI.Controllers
             db.AddIncomeSource(sourceData);
             return Ok(sourceData);
         }
+
+        [HttpGet("{user}")]
+        public IActionResult Get(int user) 
+        {
+            var returnList = db.GetIncomeSourcesByUserId(user);
+            return Ok(returnList);
+        }
     }
 }

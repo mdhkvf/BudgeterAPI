@@ -23,5 +23,10 @@ namespace AuthAPI.Database
             IncomeSources.Add(newSource);
             this.SaveChanges();
         }
+
+        public List<IncomeSource> GetIncomeSourcesByUserId(int userId)
+        {
+            return IncomeSources.Where(x => x.UserId == userId).ToList();
+        } 
     }
 }

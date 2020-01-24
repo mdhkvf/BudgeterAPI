@@ -1,9 +1,7 @@
 ﻿using AuthAPI.DataTransfer;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace AuthAPI.Database
 {
@@ -19,7 +17,7 @@ namespace AuthAPI.Database
 
         public void AddIncomeSource(IncomeSource newSource)
         {
-            newSource.UserId = 1; //TODO: Get user id from JWT token
+            //TODO: Get user id from JWT token
             IncomeSources.Add(newSource);
             this.SaveChanges();
         }

@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using AuthAPI.Database;
-using AuthAPI.DataTransfer;
-using Microsoft.AspNetCore.Authentication;
+﻿using AuthAPI.DataTransfer;
+using AuthAPI.Services;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AuthAPI.Controllers
@@ -16,19 +10,24 @@ namespace AuthAPI.Controllers
     [Authorize]
     public class IncomeSourceController : ControllerBase
     {
-        private IncomeSourceContext db = new IncomeSourceContext();
+        private IIncomeService _incomeServce;
+
+        public IncomeSourceController(IIncomeService incomeService)
+        {
+            _incomeServce = incomeService;
+        }
 
         [HttpPost]
         public IActionResult Post([FromBody] IncomeSource sourceData)
         {
-            db.AddIncomeSource(sourceData);
+            _incomeServce.AddIncomeSource(sourceData);
             return Ok(sourceData);
         }
 
-        [HttpGet("{user}")]
-        public IActionResult Get(int user) 
+        [HttpGet("{userId}")]
+        public IActionResult Get(int userId) 
         {
-            var returnList = db.GetIncomeSourcesByUserId(user);
+            var returnList = _incomeServce.GetIncomeSourcesById(userId);
             return Ok(returnList);
         }
     }

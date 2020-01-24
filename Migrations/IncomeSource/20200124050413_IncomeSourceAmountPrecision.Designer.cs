@@ -4,14 +4,16 @@ using AuthAPI.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace AuthAPI.Migrations.IncomeSource
 {
     [DbContext(typeof(IncomeSourceContext))]
-    partial class IncomeSourceContextModelSnapshot : ModelSnapshot
+    [Migration("20200124050413_IncomeSourceAmountPrecision")]
+    partial class IncomeSourceAmountPrecision
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

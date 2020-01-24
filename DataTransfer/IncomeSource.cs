@@ -20,8 +20,9 @@ namespace AuthAPI.DataTransfer
         [Column(TypeName = "VARCHAR(250)")]
         [StringLength(250)]
         public string Description { get; set; }
-        
-        public double Amount { get; set; }
+
+        [Column(TypeName = "decimal(18,2)")]
+        public decimal Amount { get; set; }
         
         public DateTime PayDate { get; set; }
 

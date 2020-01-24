@@ -11,14 +11,14 @@ namespace AuthAPI.Services
 {
     public class AuthenticationService : IAuthenticationService
     {
-        public string GetToken()
+        public string GetToken(int userId)
         {
             string tokenVal = "";
 
             var authClaims = new[]
             {
-                new Claim(JwtRegisteredClaimNames.Sub, "mhecky"),
-                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
+                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+                new Claim("userId", userId.ToString())
             };
 
             var authSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("SecureKeyTestingCharLength"));

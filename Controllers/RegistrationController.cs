@@ -41,7 +41,7 @@ namespace AuthAPI.Controllers
                     EmailAddress = registeredUser.EmailAddress,
                     FirstName = registeredUser.FirstName,
                     LastName = registeredUser.LastName,
-                    AuthToken = _authService.GetToken()
+                    AuthToken = _authService.GetToken(registeredUser.UserId)
                 };
             }
             else

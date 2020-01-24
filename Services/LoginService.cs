@@ -55,7 +55,7 @@ namespace AuthAPI.Services
                 attemptResult.EmailAddress = matchedUser.EmailAddress;
                 attemptResult.FirstName = matchedUser.FirstName;
                 attemptResult.LastName = matchedUser.LastName;
-                attemptResult.AuthToken = _authService.GetToken();
+                attemptResult.AuthToken = _authService.GetToken(matchedUser.UserId);
                 return attemptResult;
             }
         }

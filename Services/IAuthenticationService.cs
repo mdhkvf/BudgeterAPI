@@ -7,6 +7,6 @@ namespace AuthAPI.Services
 {
     public interface IAuthenticationService
     {
-        public string GetToken();
+        public string GetToken(int userId);
     }
 }

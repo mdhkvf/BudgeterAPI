@@ -20,15 +20,26 @@ namespace AuthAPI.Controllers
         [HttpPost]
         public IActionResult Post([FromBody] IncomeSource sourceData)
         {
-            _incomeServce.AddIncomeSource(sourceData);
-            return Ok(sourceData);
+            int userId;            
+            if (int.TryParse(User.FindFirst("userId").Value, out userId))
+            {
+                sourceData.UserId = userId;
+                _incomeServce.AddIncomeSource(sourceData);
+                return Ok(sourceData);
+            }
+            return BadRequest();
         }
 
-        [HttpGet("{userId}")]
-        public IActionResult Get(int userId) 
+        [HttpGet("")]
+        public IActionResult Get() 
         {
-            var returnList = _incomeServce.GetIncomeSourcesById(userId);
-            return Ok(returnList);
+            int userId;
+            if (int.TryParse(User.FindFirst("userId").Value, out userId))
+            {
+                var returnList = _incomeServce.GetIncomeSourcesById(userId);
+                return Ok(returnList);
+            }
+            return BadRequest();
         }
     }
 }

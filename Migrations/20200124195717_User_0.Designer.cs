@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AuthAPI.Migrations
 {
     [DbContext(typeof(UserContext))]
-    [Migration("20200120050602_Initial")]
-    partial class Initial
+    [Migration("20200124195717_User_0")]
+    partial class User_0
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

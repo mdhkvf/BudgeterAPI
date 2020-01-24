@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace AuthAPI.Migrations
 {
-    public partial class Initial : Migration
+    public partial class User_0 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

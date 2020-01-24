@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace AuthAPI.Migrations.IncomeSource
 {
-    public partial class InitialIncomeSource : Migration
+    public partial class IncomeSource_0 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -13,11 +13,12 @@ namespace AuthAPI.Migrations.IncomeSource
                 {
                     IncomeSourceId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    UserId = table.Column<int>(nullable: false),
                     Name = table.Column<string>(type: "VARCHAR(50)", maxLength: 50, nullable: true),
                     Description = table.Column<string>(type: "VARCHAR(250)", maxLength: 250, nullable: true),
-                    Amount = table.Column<double>(nullable: false),
+                    Amount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     PayDate = table.Column<DateTime>(nullable: false),
-                    Frequency = table.Column<string>(type: "VARCHAR(12)", maxLength: 12, nullable: true)
+                    Frequency = table.Column<string>(type: "VARCHAR(30)", maxLength: 30, nullable: true)
                 },
                 constraints: table =>
                 {

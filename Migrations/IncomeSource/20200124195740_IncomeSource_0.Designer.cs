@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AuthAPI.Migrations.IncomeSource
 {
     [DbContext(typeof(IncomeSourceContext))]
-    [Migration("20200120052832_IncomeSource_1")]
-    partial class IncomeSource_1
+    [Migration("20200124195740_IncomeSource_0")]
+    partial class IncomeSource_0
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -28,8 +28,8 @@ namespace AuthAPI.Migrations.IncomeSource
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<double>("Amount")
-                        .HasColumnType("float");
+                    b.Property<decimal>("Amount")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("Description")
                         .HasColumnType("VARCHAR(250)")

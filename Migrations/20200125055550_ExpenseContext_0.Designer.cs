@@ -4,14 +4,16 @@ using AuthAPI.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace AuthAPI.Migrations.Expense
+namespace AuthAPI.Migrations
 {
     [DbContext(typeof(ExpenseContext))]
-    partial class ExpenseContextModelSnapshot : ModelSnapshot
+    [Migration("20200125055550_ExpenseContext_0")]
+    partial class ExpenseContext_0
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -29,7 +31,7 @@ namespace AuthAPI.Migrations.Expense
                     b.Property<decimal>("Amount")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<int>("ExpenseCategoryId")
+                    b.Property<int>("CategoryId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("ExpenseDate")
@@ -52,6 +54,8 @@ namespace AuthAPI.Migrations.Expense
 
                     b.HasKey("ExpenseId");
 
+                    b.HasIndex("CategoryId");
+
                     b.ToTable("Expenses");
                 });
 
@@ -71,6 +75,15 @@ namespace AuthAPI.Migrations.Expense
                     b.HasKey("Id");
 
                     b.ToTable("ExpenseCategories");
+                });
+
+            modelBuilder.Entity("AuthAPI.DataTransfer.Expense", b =>
+                {
+                    b.HasOne("AuthAPI.DataTransfer.ExpenseCategory", "Category")
+                        .WithMany("Expenses")
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AuthAPI.Migrations.IncomeSource
 {
     [DbContext(typeof(IncomeSourceContext))]
-    [Migration("20200124195740_IncomeSource_0")]
-    partial class IncomeSource_0
+    [Migration("20200125055657_Income_0")]
+    partial class Income_0
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

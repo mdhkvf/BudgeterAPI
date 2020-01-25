@@ -7,10 +7,10 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace AuthAPI.Migrations
+namespace AuthAPI.Migrations.User
 {
     [DbContext(typeof(UserContext))]
-    [Migration("20200124195717_User_0")]
+    [Migration("20200125055637_User_0")]
     partial class User_0
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

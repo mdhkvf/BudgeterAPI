@@ -18,6 +18,11 @@ namespace AuthAPI.Database
                 @"Server=localhost;Database=Budget;Integrated Security=True");
         }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Expense>().HasOne(p => p.Category).WithMany(x => x.Expenses).HasForeignKey(p => p.CategoryId);
+        }
+
         public void AddExpense(Expense expense)
         {
             Expenses.Add(expense);
@@ -26,7 +31,7 @@ namespace AuthAPI.Database
 
         public List<Expense> GetExpensesByUserId(int userId)
         {
-            return Expenses.Where(x => x.UserId == userId).ToList();
+            return Expenses.Include(x => x.Category).Where(x => x.UserId == userId).ToList();
         }
     }
 }

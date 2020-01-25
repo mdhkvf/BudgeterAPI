@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace AuthAPI.Migrations
+namespace AuthAPI.Migrations.User
 {
     public partial class User_0 : Migration
     {

@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace AuthAPI.Migrations.IncomeSource
 {
-    public partial class IncomeSource_0 : Migration
+    public partial class Income_0 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

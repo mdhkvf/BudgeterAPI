@@ -10,7 +10,6 @@ namespace AuthAPI.DataTransfer
     public class Expense
     {
         public int ExpenseId { get; set; }
-        public int ExpenseCategoryId { get; set; }
         public int UserId { get; set; }
 
         [Column(TypeName = "VARCHAR(50)")]
@@ -29,5 +28,8 @@ namespace AuthAPI.DataTransfer
         [Column(TypeName = "VARCHAR(30)")]
         [StringLength(30)]
         public string Frequency { get; set; }
+
+        public int CategoryId { get; set; }
+        public ExpenseCategory Category { get; set; }
     }
 }

@@ -78,6 +78,7 @@ namespace AuthAPI
             services.AddTransient<IAuthenticationService, AuthenticationService>();
             services.AddTransient<ILoginService, LoginService>();
             services.AddTransient<IIncomeService, IncomeService>();
+            services.AddTransient<IExpenseService, ExpenseService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

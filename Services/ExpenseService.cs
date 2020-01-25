@@ -1,5 +1,6 @@
 ﻿using AuthAPI.Database;
 using AuthAPI.DataTransfer;
+using AuthAPI.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,9 +22,27 @@ namespace AuthAPI.Services
             _database.AddExpense(expense);
         }
 
-        public List<Expense> GetExpensesByUserId(int userId)
+        public List<ExpenseEntity> GetExpensesByUserId(int userId)
         {
-            return _database.GetExpensesByUserId(userId);
+            var rtnList = new List<ExpenseEntity>();
+            foreach (Expense e in _database.GetExpensesByUserId(userId))
+            {
+                var exp = new ExpenseEntity()
+                {
+                    Amount = e.Amount,
+                    CategoryDescription = e.Category.Description,
+                    CategoryName = e.Category.Name,
+                    ExpenseDate = e.ExpenseDate,
+                    ExpenseDescription = e.ExpenseDescription,
+                    ExpenseId = e.ExpenseId,
+                    ExpenseName = e.ExpenseName,
+                    Frequency = e.Frequency,
+                    UserId = e.UserId
+                };
+                rtnList.Add(exp);
+            }
+
+            return rtnList;
         }
     }
 }

@@ -29,6 +29,7 @@ namespace AuthAPI.Controllers
             if (int.TryParse(User.FindFirst("userId").Value, out userId))
             {
                 expenseData.UserId = userId;
+                expenseData.CategoryId = 1;
                 _expenseService.AddExpense(expenseData);
                 return Ok(expenseData);
             }

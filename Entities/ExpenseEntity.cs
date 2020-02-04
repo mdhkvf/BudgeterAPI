@@ -10,9 +10,9 @@ namespace AuthAPI.Entities
         public int ExpenseId { get; set; }
         public int UserId { get; set; }
 
-        public string ExpenseName { get; set; }
+        public string Name { get; set; }
 
-        public string ExpenseDescription { get; set; }
+        public string Description { get; set; }
 
         public decimal Amount { get; set; }
 

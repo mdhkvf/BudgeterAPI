@@ -33,9 +33,9 @@ namespace AuthAPI.Services
                     CategoryDescription = e.Category.Description,
                     CategoryName = e.Category.Name,
                     ExpenseDate = e.ExpenseDate,
-                    ExpenseDescription = e.ExpenseDescription,
+                    Description = e.ExpenseDescription,
                     ExpenseId = e.ExpenseId,
-                    ExpenseName = e.ExpenseName,
+                    Name = e.ExpenseName,
                     Frequency = e.Frequency,
                     UserId = e.UserId
                 };

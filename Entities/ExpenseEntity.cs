@@ -16,7 +16,7 @@ namespace AuthAPI.Entities
 
         public decimal Amount { get; set; }
 
-        public DateTime ExpenseDate { get; set; }
+        public DateTime? ExpenseDate { get; set; }
 
         public string Frequency { get; set; }
 

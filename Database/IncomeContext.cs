@@ -5,10 +5,10 @@ using System.Linq;
 
 namespace AuthAPI.Database
 {
-    public class IncomeSourceContext : DbContext
+    public class IncomeContext : DbContext
     {
-        private DbSet<IncomeSource> IncomeSources { get; set; }
-        private DbSet<IncomeSourceCategory> IncomeSourcesCategories { get; set; }
+        private DbSet<Income> Income { get; set; }
+        private DbSet<IncomeCategory> IncomeCategories { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -16,16 +16,16 @@ namespace AuthAPI.Database
                 @"Server=localhost;Database=Budget;Integrated Security=True");
         }
 
-        public void AddIncomeSource(IncomeSource newSource)
+        public void AddIncomeSource(Income newSource)
         {
             //TODO: Get user id from JWT token
-            IncomeSources.Add(newSource);
+            Income.Add(newSource);
             this.SaveChanges();
         }
 
-        public List<IncomeSource> GetIncomeSourcesByUserId(int userId)
+        public List<Income> GetIncomeSourcesByUserId(int userId)
         {
-            return IncomeSources.Where(x => x.UserId == userId).ToList();
+            return Income.Where(x => x.UserId == userId).ToList();
         } 
     }
 }

@@ -18,7 +18,7 @@ namespace AuthAPI.Controllers
         }
 
         [HttpPost]
-        public IActionResult Post([FromBody] IncomeSource sourceData)
+        public IActionResult Post([FromBody] Income sourceData)
         {
             int userId;            
             if (int.TryParse(User.FindFirst("userId").Value, out userId))

@@ -8,6 +8,7 @@ namespace AuthAPI.Database
     public class IncomeSourceContext : DbContext
     {
         private DbSet<IncomeSource> IncomeSources { get; set; }
+        private DbSet<IncomeSourceCategory> IncomeSourcesCategories { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

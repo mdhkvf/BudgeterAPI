@@ -5,7 +5,7 @@ namespace AuthAPI.Services
 {
     public interface IIncomeService
     {
-        List<IncomeSource> GetIncomeSourcesById(int userId);
-        void AddIncomeSource(IncomeSource incomeSource);
+        List<Income> GetIncomeSourcesById(int userId);
+        void AddIncomeSource(Income incomeSource);
     }
 }

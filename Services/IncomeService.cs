@@ -6,19 +6,19 @@ namespace AuthAPI.Services
 {
     public class IncomeService : IIncomeService
     {
-        private IncomeSourceContext _database;
+        private IncomeContext _database;
 
         public IncomeService()
         {
-            _database = new IncomeSourceContext();
+            _database = new IncomeContext();
         }
 
-        public void AddIncomeSource(IncomeSource incomeSource)
+        public void AddIncomeSource(Income incomeSource)
         {
             _database.AddIncomeSource(incomeSource);
         }
 
-        public List<IncomeSource> GetIncomeSourcesById(int userId)
+        public List<Income> GetIncomeSourcesById(int userId)
         {
             return _database.GetIncomeSourcesByUserId(userId);
         }

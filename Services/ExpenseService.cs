@@ -33,10 +33,10 @@ namespace AuthAPI.Services
                     CategoryDescription = e.Category.Description,
                     CategoryName = e.Category.Name,
                     ExpenseDate = e.ExpenseDate,
-                    Description = e.ExpenseDescription,
+                    //Description = e.ExpenseDescription,
                     ExpenseId = e.ExpenseId,
-                    Name = e.ExpenseName,
-                    Frequency = e.Frequency,
+                    //Name = e.ExpenseName,
+                    //Frequency = e.Frequency,
                     UserId = e.UserId
                 };
                 rtnList.Add(exp);

@@ -14,22 +14,20 @@ namespace AuthAPI.DataTransfer
 
         [Column(TypeName = "VARCHAR(50)")]
         [StringLength(50)]
-        public string ExpenseName { get; set; }
+        public string Name { get; set; }
 
         [Column(TypeName = "VARCHAR(250)")]
         [StringLength(250)]
-        public string ExpenseDescription { get; set; }
+        public string Description { get; set; }
         
         [Column(TypeName = "decimal(18,2)")]
         public decimal Amount { get; set; }
           
-        public DateTime ExpenseDate { get; set; }
-
-        [Column(TypeName = "VARCHAR(30)")]
-        [StringLength(30)]
-        public string Frequency { get; set; }
+        public DateTime? ExpenseDate { get; set; }
 
         public int CategoryId { get; set; }
         public ExpenseCategory Category { get; set; }
+
+        public int MonthId { get; set; }
     }
 }

@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace AuthAPI.DataTransfer
 {
-    public class ExpenseCategory
+    public class IncomeCategory
     {
         public int Id { get; set; }
 
@@ -14,7 +14,8 @@ namespace AuthAPI.DataTransfer
 
         [Column(TypeName = "VARCHAR(150)")]
         [StringLength(150)]
-        public string Description { get; set; }
-        public List<Expense> Expenses { get; set; }
+        public string IncomeDescription { get; set; }
+
+        public List<Income> Incomes { get; set; }
     }
 }

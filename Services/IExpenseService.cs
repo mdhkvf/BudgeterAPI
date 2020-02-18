@@ -1,5 +1,4 @@
-﻿using AuthAPI.DataTransfer;
-using AuthAPI.Entities;
+﻿using AuthAPI.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +10,6 @@ namespace AuthAPI.Services
     {
         public List<ExpenseEntity> GetExpensesByUserId(int userId);
 
-        public void AddExpense(Expense expense);
+        //public void AddExpense(Expense expense);
     }
 }

@@ -1,17 +1,16 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
-namespace AuthAPI.DataTransfer
+namespace AuthAPI.DataModels
 {
-    public class UserLogin
+    public partial class UserLogin
     {
         public int UserLoginId { get; set; }
         public int UserId { get; set; }
         public int FailedLoginAttempts { get; set; }
         public bool LockedOut { get; set; }
         public DateTime? UnlockDate { get; set; }
+
+        public virtual Users User { get; set; }
     }
 }

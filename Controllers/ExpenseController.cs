@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using AuthAPI.DataTransfer;
 using AuthAPI.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -22,19 +21,19 @@ namespace AuthAPI.Controllers
             _expenseService = expenseService;
         }
 
-        [HttpPost]
-        public IActionResult Post([FromBody] Expense expenseData)
-        {
-            int userId;
-            if (int.TryParse(User.FindFirst("userId").Value, out userId))
-            {
-                expenseData.UserId = userId;
-                expenseData.CategoryId = 1;
-                _expenseService.AddExpense(expenseData);
-                return Ok(expenseData);
-            }
-            return BadRequest();
-        }
+        //[HttpPost]
+        //public IActionResult Post([FromBody] Expense expenseData)
+        //{
+        //    int userId;
+        //    if (int.TryParse(User.FindFirst("userId").Value, out userId))
+        //    {
+        //        expenseData.UserId = userId;
+        //        expenseData.CategoryId = 1;
+        //        _expenseService.AddExpense(expenseData);
+        //        return Ok(expenseData);
+        //    }
+        //    return BadRequest();
+        //}
 
         [HttpGet("")]
         public IActionResult Get()

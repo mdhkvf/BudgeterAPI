@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using AuthAPI.Database;
 using AuthAPI.Payloads;
 using AuthAPI.Models;
 using AuthAPI.Services;
@@ -30,25 +29,25 @@ namespace AuthAPI.Controllers
         {
             LoginPostResponse response = new LoginPostResponse();
 
-            DataTransfer.User registeredUser = _registrationService.Register(registrationData);
+            //DataTransfer.User registeredUser = _registrationService.Register(registrationData);
 
-            if (registeredUser != null)
-            {
-                response.Success = true;
-                response.Body = new LoginPostResponseBody()
-                {
-                    UserName = registeredUser.UserName,
-                    EmailAddress = registeredUser.EmailAddress,
-                    FirstName = registeredUser.FirstName,
-                    LastName = registeredUser.LastName,
-                    AuthToken = _authService.GetToken(registeredUser.UserId)
-                };
-            }
-            else
-            {
-                response.Success = false;
-                response.ErrorMessage = "Unable to create account.";
-            }
+            //if (registeredUser != null)
+            //{
+            //    response.Success = true;
+            //    response.Body = new LoginPostResponseBody()
+            //    {
+            //        UserName = registeredUser.UserName,
+            //        EmailAddress = registeredUser.EmailAddress,
+            //        FirstName = registeredUser.FirstName,
+            //        LastName = registeredUser.LastName,
+            //        AuthToken = _authService.GetToken(registeredUser.UserId)
+            //    };
+            //}
+            //else
+            //{
+            //    response.Success = false;
+            //    response.ErrorMessage = "Unable to create account.";
+            //}
 
             return Ok(response);
         }

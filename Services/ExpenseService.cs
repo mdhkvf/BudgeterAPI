@@ -1,5 +1,4 @@
-﻿using AuthAPI.Database;
-using AuthAPI.DataTransfer;
+﻿using AuthAPI.DataModels;
 using AuthAPI.Entities;
 using System;
 using System.Collections.Generic;
@@ -8,24 +7,25 @@ using System.Threading.Tasks;
 
 namespace AuthAPI.Services
 {
-    public class ExpenseService : IExpenseService
+    public class ExpenseService //: IExpenseService
     {
-        private ExpenseContext _database;
+        private BudgetContext _database;
 
         public ExpenseService()
         {
-            _database = new ExpenseContext();
+            _database = new BudgetContext();
         }
 
-        public void AddExpense(Expense expense)
+        public void AddExpense(Expenses expense)
         {
-            _database.AddExpense(expense);
+            _database.Expenses.Add(expense);
+            _database.Commit();
         }
 
         public List<ExpenseEntity> GetExpensesByUserId(int userId)
         {
             var rtnList = new List<ExpenseEntity>();
-            foreach (Expense e in _database.GetExpensesByUserId(userId))
+            foreach (Expenses e in _database.GetExpensesByUserId(userId))
             {
                 var exp = new ExpenseEntity()
                 {
